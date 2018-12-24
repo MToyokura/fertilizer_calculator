@@ -1,0 +1,112 @@
+#最初の<>内で、このkivyファイル全体のWidgetプロパティを設定しています。
+<TextInput>:
+    multiline: False
+    write_tab: False
+    font_size: 20
+
+<Label>:
+    font_size: 20
+    color: 0.1, 0.1, 0.1, 1
+
+<CheckBox>:
+    size_hint_y: 0.5
+    color: 0.1, 0.1, 0.1, 1
+    
+
+<PaddingBoxLayout@BoxLayout>:
+    padding: 20
+
+
+
+
+BoxLayout:
+    orientation: "vertical"
+    canvas.before:
+        Color:
+            rgba: 0.9, 0.9, 0.9, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    PaddingBoxLayout:
+        size_hint_y: 1
+        
+        Label:
+            text: "作物名を選んでください"
+
+        Spinner:
+            text: "作物"
+
+
+    PaddingBoxLayout:
+        
+        size_hint_y: 3
+
+
+        PaddingBoxLayout:
+            orientation: "vertical"
+
+
+            PaddingBoxLayout:
+                size_hint_y: 1
+
+                Label:
+                    text: ""
+                Label:
+                    text: "圃場面積"
+
+            Label:
+                size_hint_y: 2
+                text: ""
+
+        PaddingBoxLayout:
+
+            PaddingBoxLayout:
+                orientation: "vertical"
+
+                TextInput:
+                    
+                Label:
+                    size_hint_y: 2
+                    text: ""
+                    
+        PaddingBoxLayout:
+            
+            PaddingBoxLayout:
+                orientation: "vertical"
+
+                CheckBox:
+                    group: "field_area"
+                CheckBox:
+                    group: "field_area"
+                CheckBox:
+                    group: "field_area"
+                    
+            PaddingBoxLayout:
+                orientation: "vertical"
+
+                Label:
+                    size_hint_y: 2
+                    text: "a"
+                Label:
+                    size_hint_y: 2
+                    text: "㎡"
+                Label:
+                    size_hint_y: 2
+                    text: "坪"
+
+
+                    
+    PaddingBoxLayout:
+        size_hint_y: 1
+        Label:
+            text: "メインで使う肥料"
+        Spinner:
+            text: "肥料"
+
+    PaddingBoxLayout:
+        size_hint_y: 1
+        CheckBox:
+        Label:
+            size_hint_y: 1
+            text: "直接成分比を記入"
