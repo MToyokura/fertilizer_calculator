@@ -1,3 +1,28 @@
+import pandas as pd
+
+df = pd.read_csv('plant_data.csv')
+
+# CSVの項目: 作物名,作型,基肥N,基肥P,基肥K,追肥N,追肥P,追肥K,合計N,合計P,合計K,施肥の留意点
+
+# 作物名 = input()
+# 作型 = input()
+
+作物名 = 'キュウリ'
+作型 = '促成'
+
+# ['作物名'] == 作物名である行を抜き出し、さらにその中の['作型'] == 作型]の行を抜き出す。
+a = df.loc[df['作物名'] == 作物名].loc[df['作型'] == 作型]
+
+# 先程抜き出した行をPythonの辞書に変換する。
+# このとき、 a.to_dict() だと縦横が逆になるので a.T で縦横を逆にする。
+# a.T.to_dict() だと、ほしい情報がキーが0一つだけの辞書に格納されてしまうため、[0]で中身を抜き取る。
+b = a.T.to_dict()[0]
+print(b)
+
+
+
+
+'''
 from data_for_test2 import plant_data, fertilizer_data
 
 
@@ -47,3 +72,4 @@ remaining = {
 
 print('施肥される成分量(kg(成分))/a', applied_fertilizer)
 print('不足する成分量(kg(成分))/a', remaining)
+'''
