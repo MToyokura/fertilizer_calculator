@@ -2,24 +2,35 @@
 <TextInput>:
     multiline: False
     write_tab: False
-    font_size: 20
+    font_size: 15
 
 <Label>:
-    font_size: 20
+    font_size: 15
     color: 0.1, 0.1, 0.1, 1
 
+<ResultLabel@Label>:
+    color: 0.8, 0.8, 0.9, 0.5
+
 <CheckBox>:
-    size_hint_y: 0.5
     color: 0.1, 0.1, 0.1, 1
+
+<Button>:
+    font_size: 15
+
+<Spinner>:
+    font_size: 15
+
+<TextInput>:
+    font_size: 15
     
 
 <PaddingBoxLayout@BoxLayout>:
-    padding: 20
+    padding: 15
 
 
 
 
-BoxLayout:
+PaddingBoxLayout:
     orientation: "vertical"
     canvas.before:
         Color:
@@ -39,61 +50,55 @@ BoxLayout:
 
 
     PaddingBoxLayout:
-        
-        size_hint_y: 3
-
-
-        PaddingBoxLayout:
-            orientation: "vertical"
-
-
-            PaddingBoxLayout:
-                size_hint_y: 1
-
-                Label:
-                    text: ""
-                Label:
-                    text: "圃場面積"
-
+        size_hint_y: 1.5
+        BoxLayout:
             Label:
-                size_hint_y: 2
-                text: ""
-
-        PaddingBoxLayout:
-
+                text:""
             PaddingBoxLayout:
                 orientation: "vertical"
+                Label:
+                    size_hint_y: 0.5
+                    text: "圃場面積"
+                Label:
+                    text:""
 
+                    
+        BoxLayout:
+            PaddingBoxLayout:
+                orientation: "vertical"
                 TextInput:
-                    
+                    size_hint_y: 0.7
                 Label:
-                    size_hint_y: 2
-                    text: ""
-                    
-        PaddingBoxLayout:
+                    text:""
             
-            PaddingBoxLayout:
-                orientation: "vertical"
+            BoxLayout:
+                BoxLayout:
+                    Label:
+                        text:""
+                BoxLayout:
+                    orientation: "vertical"
+                    padding:2
 
-                CheckBox:
-                    group: "field_area"
-                CheckBox:
-                    group: "field_area"
-                CheckBox:
-                    group: "field_area"
-                    
-            PaddingBoxLayout:
-                orientation: "vertical"
+                    CheckBox:
+                        group: "field_area"
+                    CheckBox:
+                        group: "field_area"
+                    CheckBox:
+                        group: "field_area"
+                        
+                BoxLayout:
+                    orientation: "vertical"
+                    padding:2
 
-                Label:
-                    size_hint_y: 2
-                    text: "a"
-                Label:
-                    size_hint_y: 2
-                    text: "㎡"
-                Label:
-                    size_hint_y: 2
-                    text: "坪"
+                    Label:
+                        text: "a"
+                    Label:
+                        text: "㎡"
+                    Label:
+                        text: "坪"
+
+
+
 
 
                     
@@ -105,8 +110,109 @@ BoxLayout:
             text: "肥料"
 
     PaddingBoxLayout:
-        size_hint_y: 1
-        CheckBox:
+        BoxLayout:
+            CheckBox:
+            Label:
+                text: "直接成分比を記入"
+            Label:
+                text: ""
+        BoxLayout:
+            PaddingBoxLayout:
+                Label:
+                    text:""
+                Label:
+                    font_size: 17
+                    text: "Ｎ：Ｐ：Ｋ ="
+            PaddingBoxLayout:
+                TextInput:
+
+                Label:
+                    text: "："
+
+                TextInput:
+
+                Label:
+                    text: "："
+
+                TextInput:
+
+    BoxLayout:
         Label:
-            size_hint_y: 1
-            text: "直接成分比を記入"
+            text:"補正用の肥料"
+        Label:
+            text:""
+        Label:
+            text:""
+    BoxLayout:
+        BoxLayout:
+            orientation: "vertical"
+            BoxLayout:
+                padding: 2
+                Label:
+                    text: "N"
+                Spinner:
+                    text: "選択してください"
+            BoxLayout:
+                padding: 2
+                Label:
+                    text:"P"
+                Spinner:
+                    text:"選択してください"
+            BoxLayout:
+                padding: 2
+                Label:
+                    text:"K"
+                Spinner:
+                    text:"選択してください"
+
+        BoxLayout:
+            padding: 40
+            Button:
+                size_hint_y: 5
+                text:"この条件で計算する"
+
+    BoxLayout:
+        orientation: "vertical"
+        BoxLayout:
+            padding: 2
+            Label:
+                text: "メインで使う肥料"
+            ResultLabel:
+                text: "選択した肥料"
+            ResultLabel:
+                text: "22"
+            Label:
+                text:"kg"
+
+        BoxLayout:
+            padding: 2
+            Label:
+                text:"補正用の肥料"
+            ResultLabel:
+                text:"選択したN"
+            ResultLabel:
+                text:"22"
+            Label:
+                text:"kg"
+
+        BoxLayout:
+            padding: 2
+            Label:
+                text:""
+            ResultLabel:
+                text:"選択したP"
+            ResultLabel:
+                text:"22"
+            Label:
+                text:"kg"
+
+        BoxLayout:
+            padding: 2
+            Label:
+                text:""
+            ResultLabel:
+                text:"選択したK"
+            ResultLabel:
+                text:"22"
+            Label:
+                text:"kg"
