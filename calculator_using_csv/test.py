@@ -2,25 +2,28 @@ import pandas as pd
 
 plant_df = pd.read_csv('plant_data.csv')
 # CSVの項目: 作物名,作型,基肥N,基肥P,基肥K,追肥N,追肥P,追肥K,合計N,合計P,合計K,施肥の留意点
-# データは埼玉県の施肥基準
+# データは埼玉県の施肥基準(https://www.pref.saitama.lg.jp/a0903/sehikijun.html)
 # 単位はkg/10a
 
 fertilizer_df = pd.read_csv('fertilizer_data.csv')
 # 肥料名,N,P,K,Mg,Ca,S
 # 単位は%
 
-# 作物名 = input()
+作物名 = input('キュウリ or ナス を入力\n')
 # 作型 = input()
-作物名 = 'キュウリ'
-作型 = '促成'
+作型 = '半促成'
 
 # ['作物名'] == 作物名である行を抜き出し、さらにその中の['作型'] == 作型]の行を抜き出す。
 a = plant_df.loc[plant_df['作物名'] == 作物名].loc[plant_df['作型'] == 作型]
 
 # 先程抜き出した行をPythonの辞書に変換する。
-# このとき、 a.to_dict() だと縦横が逆になるので a.T で縦横を逆にする。
-# a.T.to_dict() だと、ほしい情報がキーが0一つだけの辞書に格納されてしまうため、[0]で中身を抜き取る。
-plant_dict = a.T.to_dict()[0]
+# このとき、 a.to_dict() だと縦横が逆になるので a.T で縦横を逆にしてから to_dict() する。
+plant_dict = a.T.to_dict()
+# この時点では、 plant_dict 内のほしい情報がキーが一つだけの辞書に格納されてしまうため、
+# 一度 list(plant_dict.values()) というリストを作り、次にその0番目を抜き取る。
+# (もっとスマートな方法がある気がするので提案あったら教えて！！！)
+temp_list = list(plant_dict.values())
+plant_dict = temp_list[0]
 print(plant_dict)
 
 # 肥料名 = input()
@@ -29,7 +32,7 @@ print(plant_dict)
 b = fertilizer_df.loc[fertilizer_df['肥料名'] == 肥料名]
 fertilizer_dict = b.T.to_dict()[0]
 # 後の計算が面倒くさくなるのでここで全ての値に0.01をかける。
-# これによりfertilizer_dictの中身はは肥料1kgあたりの成分含有重量の数値となる。
+# これによりfertilizer_dictの中身は肥料1kgあたりの成分含有重量の数値となる。
 for key in fertilizer_dict:
     if type(fertilizer_dict[key]) == int or type(fertilizer_dict[key]) == float:
         fertilizer_dict[key] = fertilizer_dict[key] * 0.01
